@@ -5,6 +5,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const universe = Universe.new();
+universe.init();
 const CELL_SIZE = 5;
 universe.set_height(64);
 universe.set_width(64);
@@ -78,7 +79,6 @@ function renderLoop() {
 let pauseButton = document.getElementById("play-pause");
 function play() {
   pauseButton.textContent = "pause";
-  universe.init();
   renderLoop();
 }
 pauseButton.addEventListener("click", (e) => {
@@ -94,10 +94,8 @@ pauseButton.addEventListener("click", (e) => {
 let randomButton = document.getElementById("random-init");
 randomButton.addEventListener("click", (e) => {
   universe.reset();
+  universe.init();
   drawCells();
-  setTimeout(() => {
-    universe.init();
-  }, 3000);
 });
 
 let clearButton = document.getElementById("reset");
